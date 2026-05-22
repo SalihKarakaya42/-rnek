@@ -1,0 +1,6 @@
+{
+  "name": "Neon Agricorp",
+  "description": "Cyberpunk Hydroponics Farming Idle Simulator",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

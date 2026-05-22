@@ -1,0 +1,230 @@
+import { CropType, Technology, District, SystemEvent } from './types';
+
+export const CROPS: CropType[] = [
+  {
+    id: 'lettuce',
+    name: 'HİDRO MARUL',
+    seedCost: 15,
+    baseGrowTime: 15,
+    baseSellValue: 24,
+    image: 'https://lh3.googleusercontent.com/aida/ADBb0uiZqU2ib1DMUMYARbF6LdkXkfc5t9oQAW35cpMvthols_PvLSQ4JbOKNbuaW2junyvGmSzlfZ-6hr5uDrBR328TfzVY_ha4_2cbjPGfjI7lVpM1ac_AHwc6iaqUdaRvpP0CE7sVdH9oJuJhCXNb1P54fng9oX9-6ZgM79KADuX2YuF-xpvS4Ar6ZoagQzmaDTYK4_b0GFANnqdIkqFbIKOPzUydew28mvaW1_-tI3P-Zih2Ragq1VhJ8dA',
+    description: 'Yüksek verimli ve hızlı büyüyen genetiği değiştirilmiş marul.',
+    waterConsumption: 0.2, // per second while growing
+    energyConsumption: 0.1,
+  },
+  {
+    id: 'potato',
+    name: 'RAD PATATES',
+    seedCost: 30,
+    baseGrowTime: 40,
+    baseSellValue: 55,
+    image: 'https://lh3.googleusercontent.com/aida/ADBb0uiZqU2ib1DMUMYARbF6LdkXkfc5t9oQAW35cpMvthols_PvLSQ4JbOKNbuaW2junyvGmSzlfZ-6hr5uDrBR328TfzVY_ha4_2cbjPGfjI7lVpM1ac_AHwc6iaqUdaRvpP0CE7sVdH9oJuJhCXNb1P54fng9oX9-6ZgM79KADuX2YuF-xpvS4Ar6ZoagQzmaDTYK4_b0GFANnqdIkqFbIKOPzUydew28mvaW1_-tI3P-Zih2Ragq1VhJ8dA',
+    description: 'Radyasyon emilimi yüksek, dayanıklı ve besleyici yer altı yumrusu.',
+    waterConsumption: 0.3,
+    energyConsumption: 0.2,
+  },
+  {
+    id: 'wheat',
+    name: 'SENTETİK BUĞDAY',
+    seedCost: 55,
+    baseGrowTime: 90,
+    baseSellValue: 105,
+    image: 'https://lh3.googleusercontent.com/aida/ADBb0ui8xDorAh8PLoX7QrErBnZPABaLncBQjzfUKrFi9oJSuEk7IpjThZQwiNIjIgsYNQHJmyTcL2JNb5xnM5pVw0CdGq558p-EOue92BRV8nvgYHwnx4At5x6WsIi7DSCDXHzVwA2vAhEpJWAtPU8BX2bwdbaQo_G64NdAuGqf2oyQhZlv6h_2_awa9y3H5UHqCkS97PFpKqkDnFqai-SZtybIW4JCPeXmBSI9IE52XRCbc6r1Ai7yqvEo5CE',
+    description: 'Yarı yapay DNA yapısıyla tamamen steril laboratuvarlarda üretilen buğday türü.',
+    waterConsumption: 0.4,
+    energyConsumption: 0.3,
+  },
+  {
+    id: 'tomato',
+    name: 'NEON DOMATES',
+    seedCost: 90,
+    baseGrowTime: 160,
+    baseSellValue: 195,
+    image: 'https://lh3.googleusercontent.com/aida/ADBb0ui8xDorAh8PLoX7QrErBnZPABaLncBQjzfUKrFi9oJSuEk7IpjThZQwiNIjIgsYNQHJmyTcL2JNb5xnM5pVw0CdGq558p-EOue92BRV8nvgYHwnx4At5x6WsIi7DSCDXHzVwA2vAhEpJWAtPU8BX2bwdbaQo_G64NdAuGqf2oyQhZlv6h_2_awa9y3H5UHqCkS97PFpKqkDnFqai-SZtybIW4JCPeXmBSI9IE52XRCbc6r1Ai7yqvEo5CE',
+    description: 'Karanlıkta parlayan neon pigmente ve yüksek kalsiyum oranına sahip hibrit domates.',
+    waterConsumption: 0.6,
+    energyConsumption: 0.5,
+  },
+  {
+    id: 'berry',
+    name: 'PARLAK ÇİLEK',
+    seedCost: 160,
+    baseGrowTime: 300,
+    baseSellValue: 420,
+    image: 'https://lh3.googleusercontent.com/aida/ADBb0ugO8UUYyiRJRqQZ-m8HlBo6ZbECNVSP4eBv4h3tAXFufvQphYPZks-SC5LlfJ5Fj3BA7r6AEAn5mzrcvpItkcn5juDF_hIK49xYCkXFXkwEP0S7k8ARlTvSlMIea5ZIYNIQPZK-AxkOWIktFcGeE2D72i9mzX-E8Urx8EHEtJeGVh9IJOi-IQWxckjt88AwngVecV8E-ZVG9hKdkTWHvxuTpOTF5g0b2eO0en1_mCq3ELMiaWf_5SzKcJtM',
+    description: 'Biyolüminesans özelliğine sahip nadir ve özel çilek türü.',
+    waterConsumption: 0.9,
+    energyConsumption: 0.8,
+  }
+];
+
+export const INITIAL_TECHS: Technology[] = [
+  {
+    id: 'hydro_efficiency_1',
+    name: 'Hidroponik Verimlilik I',
+    bonusText: 'Kazanım: +20% Hasat Hızı',
+    cost: 500,
+    researched: false,
+    minLevel: 1,
+    icon: 'potted_plant',
+  },
+  {
+    id: 'deep_well_1',
+    name: 'Derin Kuyu Pompalama I',
+    bonusText: 'Bonus: +15% Su Çekimi',
+    cost: 800,
+    researched: false,
+    minLevel: 3,
+    icon: 'waves',
+  },
+  {
+    id: 'basic_reactor_1',
+    name: 'Temel Reaktör Çekirdeği I',
+    bonusText: 'Bonus: +20% Enerji Üretimi',
+    cost: 1000,
+    researched: false,
+    minLevel: 5,
+    icon: 'radioactive',
+  },
+  {
+    id: 'hydro_water_mgmt_1',
+    name: 'Hidroponik Su Yönetimi I',
+    bonusText: 'Bonus: -15% Su Tüketimi',
+    cost: 1500,
+    researched: false,
+    minLevel: 8,
+    icon: 'water_lux',
+  },
+  {
+    id: 'capacitor_bank_1',
+    name: 'Kapasitör Bankası V1',
+    bonusText: 'Bonus: +500 Enerji Kapasitesi',
+    cost: 2000,
+    researched: false,
+    minLevel: 10,
+    icon: 'battery_charging_full',
+  },
+  {
+    id: 'geothermal_drilling',
+    name: 'Jeotermal Sondaj',
+    bonusText: 'Kilitli Seviye: 14 | +40% Enerji Üretimi',
+    cost: 3500,
+    researched: false,
+    minLevel: 14,
+    icon: 'volcano',
+  },
+  {
+    id: 'lab_systems',
+    name: 'Laboratuvar Sistemleri',
+    bonusText: 'Kilitli Seviye: 16 | +25% Tohum Çimlenme Hızı',
+    cost: 4000,
+    researched: false,
+    minLevel: 16,
+    icon: 'biotech',
+  },
+  {
+    id: 'excavation_protocol',
+    name: 'Kazı Protokolü I',
+    bonusText: 'Kilitli Seviye: 18 | Ekstre Pasif Gelirler',
+    cost: 5000,
+    researched: false,
+    minLevel: 18,
+    icon: 'precision_manufacturing',
+  },
+  {
+    id: 'civilization_plane',
+    name: 'Medeniyet Planı',
+    bonusText: 'Kilitli Seviye: 20 | %50 Prestij Avantajı',
+    cost: 15000,
+    researched: false,
+    minLevel: 20,
+    icon: 'account_tree',
+  }
+];
+
+export const INITIAL_DISTRICTS: District[] = [
+  {
+    id: 'moist_cave',
+    name: 'Nemli Mağara',
+    cost: 0,
+    unlocked: true,
+    income: {
+      credits: 22,
+      water: 5,
+      xp: 4,
+    },
+    icon: 'water_lux',
+    reqLevel: 1,
+  },
+  {
+    id: 'reactor_zone',
+    name: 'Reaktör Bölgesi',
+    cost: 0,
+    unlocked: true,
+    income: {
+      credits: 46,
+      water: 2,
+      xp: 8,
+    },
+    icon: 'settings_input_component',
+    reqLevel: 5,
+  },
+  {
+    id: 'abandoned_lab',
+    name: 'Terk Edilmiş Laboratuvar',
+    cost: 0,
+    unlocked: true,
+    income: {
+      credits: 88,
+      water: 0,
+      xp: 15,
+    },
+    icon: 'science',
+    reqLevel: 10,
+  },
+  {
+    id: 'toxic_layer',
+    name: 'Toksik Katman',
+    cost: 15000,
+    unlocked: false,
+    income: {
+      credits: 180,
+      water: -5, // drains water
+      xp: 35,
+    },
+    icon: 'lock',
+    reqLevel: 15,
+  },
+  {
+    id: 'megacorp_ruins',
+    name: 'MegaCorp Harabeleri',
+    cost: 30000,
+    unlocked: false,
+    income: {
+      credits: 450,
+      water: 10,
+      xp: 80,
+    },
+    icon: 'lock',
+    reqLevel: 20,
+  }
+];
+
+export const INITIAL_EVENTS: SystemEvent[] = [
+  {
+    id: 'radiation_leak',
+    title: 'Radyasyon Sızıntısı',
+    description: 'Sektör 03 verimi %20 azaldı. Onarım gerekiyor.',
+    active: true,
+    timer: '04:12',
+    type: 'radiation_leak',
+  },
+  {
+    id: 'hacker_attack',
+    title: 'Hacker Saldırısı',
+    description: 'Bio-Kredi transferleri askıya alındı. Güvenlik duvarı müdahale bekliyor.',
+    active: true,
+    timer: 'AKTİF',
+    type: 'hacker_attack',
+  }
+];
